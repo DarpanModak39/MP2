@@ -1,0 +1,111 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/*================style header section===================*/
+.header {
+  color: black;
+  background-color: chartreuse;
+  text-align: center;
+  padding: 2px;
+  display: block;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+/*===========image section================*/
+img {
+  height: 350px;
+  border: 1px solid blue;
+  display: flex;
+}
+
+/*==========style footer section===========*/
+.footer {
+  color: black;
+  background-color: chartreuse;
+  text-align: center;
+  padding: 1px;
+}
+div.column {
+  background-color: pink;
+  color: black;
+  padding: 2px;
+}
+
+/*========================================================*/
+/*================style Mobile device  ===================*/
+/*========================================================*/
+
+/*========================================================*/
+/*================style Tablet device  ===================*/
+/*========================================================*/
+@media only screen and (min-width: 992px) {
+}
+
+/*========================================================*/
+/*================style desktop device  ===================*/
+/*========================================================*/
+@media only screen and (max-width: 1200px) {
+}
+
+/*================style navigation section===================*/
+.nav {
+  border-bottom: 1px solid #eaeaeb;
+  text-align: right;
+  height: 70px;
+  line-height: 70px;
+  background-color: pink;
+  color: black;
+}
+.nav .search-container {
+  float: left;
+}
+.menu {
+  margin: 0 30px 0 0;
+}
+.menu a {
+  clear: right;
+  text-decoration: none;
+  color: black;
+  margin: 0 10px;
+  line-height: 70px;
+}
+label {
+  margin: 0 40px 0 0;
+  font-size: 26px;
+  line-height: 70px;
+  display: none;
+  width: 26px;
+  float: right;
+}
+#toggle {
+  display: none;
+}
+@media only screen and (max-width: 596px) {
+  label {
+    display: block;
+    cursor: pointer;
+  }
+  .menu {
+    text-align: center;
+    width: 100%;
+    display: none;
+  }
+  .menu a {
+    display: block;
+    border-bottom: 1px solid #eaeaeb;
+    margin: 0;
+  }
+  #toggle:checked + .menu {
+    display: block;
+    background-color: blueviolet;
+  }
+}
+
+/*================ style footer section=================*/
+
+/*========================================================*/
+/*================Slideshow content view=================*/

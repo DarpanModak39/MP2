@@ -1,0 +1,49 @@
+body{
+  margin: 0;
+  height: 0;
+  width: 0;
+  display: block;
+  background-color: lemonchiffon;
+}
+
+.container{
+    background-color: lightgrey;
+  border: 2px solid green;
+  padding: 30px;
+  margin-top: 50px;
+  margin-left: 500px;
+  margin-bottom: 300px;
+  text-align: center;
+  width: 400px;
+  font-size: 15px;
+
+
+}
+
+/*=============================================================*/
+/*========================Mobile Media queries ===============*/
+/*=============================================================*/
+@media only screen and (max-width: 600px) 
+{
+  body{
+    display: block;
+    text-decoration: none;
+    overflow: visible;
+    float: center;
+  }
+
+
+  .container{
+    float: right;
+    display: block;
+    margin: 4px;
+    width: 100%;
+  }
+  .footer{
+    display: none;
+  }
+    
+}
+/*=============================================================*/
+/*========================Mobile Media queries ===============*/
+/*=============================================================*/

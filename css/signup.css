@@ -1,0 +1,50 @@
+body{
+  margin: 0;
+  height: 0;
+  width: 0;
+  display: block;
+  background-color: lemonchiffon;
+}
+.signup{
+    background-color: lightgrey;
+  border: 2px solid green;
+  padding: 50px;
+  margin-top: 40px;
+  margin-left: 500px;
+  margin-bottom: 100px;
+  text-align: center;
+  width: 400px;
+  font-size: 20px;
+
+
+}
+
+/*=============================================================*/
+/*========================Mobile Media queries ===============*/
+/*=============================================================*/
+@media only screen and (max-width: 600px) {
+  body{
+    display: block;
+    text-decoration: none;
+    overflow: visible;
+    float: center;
+  }
+  .signup{
+    float: right;
+    display: block;
+    margin: 4px;
+    
+  }
+  form.container {
+    
+
+  }
+  .footer{
+    display: none;
+  }
+
+
+  }
+  /*=============================================================*/
+/*========================Tablet Media queries ===============*/
+/*=============================================================*/
