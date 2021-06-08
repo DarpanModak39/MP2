@@ -3,17 +3,16 @@
 include_once './dbcon.php';
 session_start();
 $_SESSION["message"]="";
-$_SESSION["myotp"]="";
-
 
 if(isset($_POST["verifyotp"]))
 {
     $mobileopt=mysqli_real_escape_string($con,$_POST["mobileotp"]);
+    $sentotp=$_SESSION["myotp"];
     if(!isset($_SESSION['myotp']))
     {
         $_SESSION["message"]="Please send OTP for verification";
     }
-    elseif($mobileopt==$_SESSION['myotp'])
+    elseif($mobileopt==$sentotp)
     {
         header("location:./signup2.php");
     }
@@ -27,10 +26,10 @@ elseif(isset($_POST["sendotp"]))
     $number=$_SESSION["mnumber"]=mysqli_real_escape_string($con,$_POST["mnumber"]);
     $sql="SELECT *FROM user WHERE mnumber='$number' ";
     $result=mysqli_query($con,$sql);
-    $use =mysqli_fetch_assoc($result);
 
-    if($use)
+    if($result)
     {
+        $use =mysqli_fetch_assoc($result);
         if($use["mnumber"] ===$number)
         {
             $_SESSION["message"]="Mobile Number has linked to another account";
@@ -125,7 +124,6 @@ elseif(isset($_POST["sendotp"]))
         
     <div class="signup">    
         <div class="inf"><?= $_SESSION['message']?></div><br>
-        <div class="inf"><?= $_SESSION["myotp"]?></div><br>
     <form action="" method="post" class="container">
         <h2>OTP Verification</h2>
 

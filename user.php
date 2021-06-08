@@ -11,14 +11,18 @@
     $sql="SELECT * FROM insurance WHERE uid='$uid'";
     $result=mysqli_query($con,$sql);
     $row=mysqli_fetch_row($result);
+    
+    
 
     $sqli="SELECT * FROM claim WHERE uid='$uid'";
     $resulti=mysqli_query($con,$sqli);
     $rowi=mysqli_fetch_row($resulti);
+    
 
     $sqlr="SELECT * FROM refund WHERE uid='$uid'";
     $resultr=mysqli_query($con,$sqlr);
     $rowr=mysqli_fetch_row($resultr);
+    
 
 ?>
 <!DOCTYPE html>
@@ -59,14 +63,20 @@
     </div>
     
     <?php
+        
+        if($row)
+        {           
             echo"
             <div class='signup'>
             <div class='column'>
             <p><b>Insurance Policy ID :$row[0]</b><hr>
             <b>Category :$row[7]</b><hr>
             <b>Issue Date :$row[10]</b><hr>
-            <b>Status :$row[9]</b><hr>
-            <b>Claim Request ID :$rowi[0]</b><hr>
+            <b>Status :$row[9]</b><hr>";
+            if($rowi)
+            {
+            
+            echo"<b>Claim Request ID :$rowi[0]</b><hr>
             <b>Claim Status :$rowi[5]</b>";
             if($rowi[5]==="Claim Accepted")
             {
@@ -74,20 +84,40 @@
                     <button><a href='refunds.php' style='text-decoration:none;'>Initiate Refund</a></button></p>
                 ";
             }
-            echo"
-            <b>Refund Request ID :$rowr[0]</b><hr>
-            <b> Refund Status :$rowr[5]</b>";
-            if($rowr[5]==="Refund Done")
+                if($rowr)
             {
-                echo"    
+                
+                echo"
+                <b>Refund Request ID :$rowr[0]</b><hr>
+                <b> Refund Status :$rowr[5]</b>";
+                if($rowr[5]==="Refund Done")
+                {
+                    echo"    
                     <form action='image.php' method='post'> 
-                        <input type='hidden' name='image' value='$row[4]'>
+                        <input type='hidden' name='image' value='$rowr[4]'>
                         <input type='submit' value='View Image' name='viewimage'>
-                    </form>
-                ";
+                        </form>";
+                }
+                echo"
+                    </p></div>";
+
             }
-            echo"
-            </p></div>";
+            else
+            {
+                 echo"";
+            }
+  
+        }   
+        else{
+            echo"";
+        }
+         
+        } 
+        else{
+             echo"";
+        }     
+        
+
 
     ?>
     
