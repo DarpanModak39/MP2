@@ -103,7 +103,7 @@
         
     </div>
     <div class="buy">
-        <p>To buy Insurance Please Pay via UPI to 7410258963@upi</p>
+        <button style="padding: 10px;"><a href="payment.php" style="text-decoration:none">Click to Buy Insurance</a></button>
     </div>
     </div>
     

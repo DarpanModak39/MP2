@@ -78,7 +78,7 @@
     <td> Vehical Registration Number </td>
     <td> RC</td>
     <td> Category</td>
-    <td> Payment Proof</td>
+    <td> Payment Status</td>
     <td> Status</td>
     </tr>
     <tr>
@@ -119,18 +119,25 @@
                     </td>";
                 echo"
                     <td> $row[7]</td>";
-                echo"                    
-                <td>
-                        <form action='image.php' method='post'> 
-                            <input type='hidden' name='image' value='$row[8]'>
-                            <input type='submit' value='View Image' name='viewimage'>
-                        </form>
-                    </td>";
+
+                $sqlp="SELECT * FROM payment  WHERE vnum='$row[5]' AND category='$row[7]'";
+                $resultp=mysqli_query($con,$sqlp);
+                $rowp=mysqli_fetch_row($resultp);
+                if($rowp)
+                {
+                    echo"
+                    <td> $rowp[3]</td>";
+                }
+                else{
+                    echo"<td>Payment Not Done</td>";
+                }
+                                
+
                     
-                if($row[9]==="Request Submitted to Admin")
+                if($row[8]==='Request Submitted to Admin')
                     {
                         echo"    
-                            <td>$row[9]
+                            <td>$row[8]
                             <form action='request.php' method='post'> 
                                 <input type='hidden' name='queryid' value=$row[0]>
                                 <input type='submit' value='Grant Insurance' name='gi'>
@@ -143,7 +150,7 @@
                     }
                     else
                     {
-                        echo"<td>$row[9]</td></tr>";    
+                        echo"<td>$row[8]</td></tr>";    
                     }
                     
             }

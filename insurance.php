@@ -15,13 +15,12 @@ if(isset($_POST["submit"]))
     $vnum=mysqli_real_escape_string($con,$_POST["vnum"]);
     $rc=mysqli_real_escape_string($con,"Images/useruploads/".uniqid('',true).$_FILES["rc"]["name"]);
     $category=mysqli_real_escape_string($con,$_POST["category"]);
-    $pproof=mysqli_real_escape_string($con,"Images/useruploads/".uniqid('',true).$_FILES["pproof"]["name"]);
 
     $uid=$_SESSION["id"];
     
-    if(copy($_FILES["idproof"]["tmp_name"],$idproof) && copy($_FILES["aproof"]["tmp_name"],$aproof) && copy($_FILES["dl"]["tmp_name"],$dl) && copy($_FILES["rc"]["tmp_name"],$rc) && copy($_FILES["pproof"]["tmp_name"],$pproof))
+    if(copy($_FILES["idproof"]["tmp_name"],$idproof) && copy($_FILES["aproof"]["tmp_name"],$aproof) && copy($_FILES["dl"]["tmp_name"],$dl) && copy($_FILES["rc"]["tmp_name"],$rc))
     {
-        $sql="INSERT INTO insurance(uid,idproof,aproof,dl,vnum,rc,category,pproof,status) VALUES('$uid','$idproof','$aproof','$dl','$vnum','$rc','$category','$pproof','Request Submitted to Admin')";
+        $sql="INSERT INTO insurance(uid,idproof,aproof,dl,vnum,rc,category,status) VALUES('$uid','$idproof','$aproof','$dl','$vnum','$rc','$category','Request Submitted to Admin')";
         $result=mysqli_query($con,$sql);
         if($result)
         { 
@@ -110,10 +109,6 @@ if(isset($_POST["submit"]))
         <option value="Commercial Vehical">Commercial Vehical</option>
         <option value="Third Party Car">Third Party Car</option>
         </select><br><br>
-
-        Payment Proof:<br>
-        <input type="file" name="pproof" style="width:35%" required/>
-        <br><br>
 
         <input type="submit" name="submit" value="Submit">
 
