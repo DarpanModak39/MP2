@@ -55,6 +55,7 @@
             <a href="request.php">View Request</a>
             <a href="view_claim.php">View Claim</a>
             <a href="refund.php">Refunds</a>
+            <a href="generatereport.php">Generate Report</a>
             <a href="./logout.php">Logout</a>
             <!--search container-->
             <div class="search-container">

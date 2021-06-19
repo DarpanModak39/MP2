@@ -49,6 +49,7 @@
         <div class="menu">
             <a href="insurance.php">Get Insured</a>
             <a href="claim.php">Claim</a>
+            <a href="paymenthistory.php">Payment History</a>
             <a href="profile.php">Profile</a>
             <a href="logout.php">Logout</a>
             <a href="all_insurance.php">All Insurance</a>
@@ -71,8 +72,8 @@
             <div class='column'>
             <p><b>Insurance Policy ID :$row[0]</b><hr>
             <b>Category :$row[7]</b><hr>
-            <b>Issue Date :$row[10]</b><hr>
-            <b>Status :$row[9]</b><hr>";
+            <b>Issue Date :$row[9]</b><hr>
+            <b>Status :$row[8]</b><hr>";
             if($rowi)
             {
             
@@ -80,16 +81,23 @@
             <b>Claim Status :$rowi[5]</b>";
             if($rowi[5]==="Claim Accepted")
             {
-                echo"    
+                if($rowr)
+                {
+                        echo"";
+
+                }else{
+                    echo"    
                     <button><a href='refunds.php' style='text-decoration:none;'>Initiate Refund</a></button></p>
-                ";
+                        ";
+                }
+                
             }
+            echo"<hr>";
                 if($rowr)
             {
                 
-                echo"
-                <b>Refund Request ID :$rowr[0]</b><hr>
-                <b> Refund Status :$rowr[5]</b>";
+                echo"<b>Refund Request ID :$rowr[0]</b><hr>
+                <b> Refund Status :$rowr[5]</b><hr>";
                 if($rowr[5]==="Refund Done")
                 {
                     echo"    

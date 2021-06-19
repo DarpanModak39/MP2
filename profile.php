@@ -40,6 +40,7 @@
         <div class="menu">
             <a href="insurance.php">Get Insured</a>
             <a href="claim.php">Claim</a>
+            <a href="paymenthistory.php">Payment History</a>
             <a href="profile.php">Profile</a>
             <a href="logout.php">Logout</a>
             <a href="all_insurance.php">All Insurance</a>

@@ -1,37 +1,15 @@
 <?php
     session_start();
     include_once './dbcon.php';
-    if($_SESSION["type"]!=="user")
-    {
-        header("location:./userlogin.php");
-    }
-    $_SESSION["message"]="";
-
-if(isset($_POST["submit"]))
-{
-    $cvideo=mysqli_real_escape_string($con,"Images/useruploads/".uniqid('',true).$_FILES["cvideo"]["name"]);
-    $fir=mysqli_real_escape_string($con,"Images/useruploads/".uniqid('',true).$_FILES["fir"]["name"]);
-    $desc=mysqli_real_escape_string($con,$_POST["desc"]);
     
     $uid=$_SESSION["id"];
+    $sql="SELECT mobile from user where id='$uid'";
+    $result=mysqli_query($con,$sql);
+    $row=mysqli_fetch_row($result);
+                    
+    $sqlp="SELECT * FROM payment where mnumber='$row[0]'";
+    $resultp=mysqli_query($con,$sqlp);
     
-    if(copy($_FILES["cvideo"]["tmp_name"],$cvideo) && copy($_FILES["fir"]["tmp_name"],$fir) )
-    {
-        $sql="INSERT INTO claim(uid,cvideo,fir,description) VALUES('$uid','$cvideo','$fir','$desc')";
-        $result=mysqli_query($con,$sql);
-        if($result)
-        { 
-            $_SESSION["message"]="Request for Claim is sent";
-        
-        }
-        else{$_SESSION["message"]="Server error please try after some time ";}
-    }
-    else
-    {
-        $_SESSION['message']='File upload failed';
-    }
-
-}
 
 
 ?>
@@ -42,8 +20,14 @@ if(isset($_POST["submit"]))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Insurance Management System</title>
-    <link rel="stylesheet" href="./css/signup.css">
     <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        td{
+            padding:5px 10px;
+        }
+    
+    </style>
     
 </head>
 <body>
@@ -53,7 +37,7 @@ if(isset($_POST["submit"]))
     </div>
 
     <!--top navigation section-->
-    <div class="nav">
+<div class="nav">
         <label for="toggle">&#9776;</label>
         <input type="checkbox" id="toggle">
         <div class="menu">
@@ -73,27 +57,43 @@ if(isset($_POST["submit"]))
         </div>
     </div>
 
+    <div class="row">
+        <div class="column">
+            <table>
+    <tr>
+    <td> ID </td>
+    <td> Razorpay Order_ID </td>
+    <td> Razorpay Payment ID</td>
+    <td> Category</td>
+    <td> Vehical Registration Number </td>
+    </tr>
+    <tr>
+        <?php
+                while($rowp=mysqli_fetch_row($resultp))
+                    {
+                        echo"
+                        <tr>
+                            <td> $rowp[0] </td>
+                            <td> $rowp[1] </td>
+                            <td> $rowp[2]</td>
+                            <td> $rowp[5]</td>
+                            <td> $rowp[6]</td>
+                            </tr>
+                        
+                        
+                        
+                        ";
 
 
-    <div class="signup">
-    <div class="inf"><?=$_SESSION["message"]?></div><br>
-    <form action="" method="post"  id="myform" class="container" enctype="multipart/form-data">
-        <h2>Claim</h2>
 
-        Video:<br>
-        <input type="file" name="cvideo" accept="video/*" capture style="width:35%" required  />
-        <br><br>
+                }
 
-        FIR:<br>
-        <input type="file" name="fir" style="width:35%" required/>
-        <br><br>
+        ?>
+    </tr>
+</table>
 
-        Description:<br>
-        <input name="desc" type="text" style="width:30%" />
-        <br><br>
 
-        <input type="submit" name="submit" value="Submit">
-    </form>
+        </div>
 
     </div>
     
@@ -104,6 +104,7 @@ if(isset($_POST["submit"]))
 
   <p>&copy;2021 VEHICLE INSURANCE MANAGEMENT SYSTEM <br>All rights reserved.</p>
   </div>
+
     
 </body>
 </html>
